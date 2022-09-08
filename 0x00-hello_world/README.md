@@ -2,4 +2,5 @@
 ## description 
 > scripts for creating and compiling very basic c source files 
 ## scripts
-> 0-preprocessor runs a C file through the preprocessor and save the result into another file<br>
+> * 0-preprocessor runs a C file through the preprocessor and save the result into another file<br>
+> * 1-compiler compiles a C file but does not link<br>
