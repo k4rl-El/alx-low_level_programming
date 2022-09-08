@@ -1,5 +1,4 @@
-#include <studio.h>
-#include <char.h>
+#include<stdio.h>
 
 /**
  * main - Main function for the source code
