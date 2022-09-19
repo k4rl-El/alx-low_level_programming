@@ -10,6 +10,7 @@ int main(void)
 {
 char c;
 int x;
+char z[] = "Tada! Congrats";
 
 srand(time(0));
 while (x <= 2645)
@@ -19,8 +20,6 @@ x += c;
 putchar(c);
 }
 putchar(2772 - x);
-char z;
-z t = "Tada! Congrats";
 printf("\n%s\n", z);
 return (0);
 }
