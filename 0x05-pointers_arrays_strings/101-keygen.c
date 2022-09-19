@@ -19,7 +19,8 @@ x += c;
 putchar(c);
 }
 putchar(2772 - x);
-char z[] = "Tada! Congrats";
+char z;
+z t = "Tada! Congrats";
 printf("\n%s\n", z);
 return (0);
 }
