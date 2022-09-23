@@ -1,23 +1,23 @@
-#include "main.h"
 /**
-* leet - function that encode a string
-*@str:string that will be encoded
-*Return:returns encoded string
-*/
-
-char *leet(char *str)
+ * leet - This function encodes a string into 1337
+ * @s: String to evaluate
+ * Return: Converted string
+ */
+char *leet(char *s)
 {
-	int index1 = 0, index2;
-	char leet[8] = {'O', 'L', '?', 'E', 'A', '?', '?', 'T'};
+	int i, j;
+	char leet[] = "oOlL22eEaA5566tT";
 
-	while (str[++index1])
+	/* loop through the string and evaluate each character */
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		for (index2 = 0; index2 <= 7; index2++)
-		{
-			if (str[index1] == leet[index2] ||
-			 str[index1] - 32 == leet[index2])
-				str[index1] = index2 + '0';
-		}
+		/* check to see if s[i] matches any leet chars */
+		for (j = 0; j < 16; j++)
+			/* if a match is found, convert char */
+			if (s[i] == leet[j])
+				s[i] = j / 2 + '0';
 	}
-	return (str);
+
+	/* return the converted string */
+	return (s);
 }
