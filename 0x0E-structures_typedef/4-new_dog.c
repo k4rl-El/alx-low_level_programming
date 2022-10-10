@@ -1,80 +1,82 @@
+#include <stdlib.h>
 #include "dog.h"
 
-
 /**
-*_strlen - returns length of
-*a string
-*@str: string to be counted
-*Return: returns length of string
-*/
-int _strlen(char *str)
-{
-int len = 0;
-while (str)
-len++;
+ * *_strdup - This function duplicates strings
+ * @s: The string to duplicate
+ * Return: The duplicated string
+ */
 
-return (len);
+char *_strdup(const char *s)
+{
+	int i, j;
+	char *d = NULL;
+
+	/* find length of s */
+	for (i = 0; s[i] != '\0'; i++)
+		;
+	/* allocate space for length and null */
+	d = malloc(i + 1);
+
+	/* if malloc fails, return NULL */
+	if (d == NULL)
+		return (NULL);
+
+	/* copy the characters into a separate string */
+	for (j = 0; s[j] != '\0'; j++)
+		d[j] = s[j];
+
+	d[j] = '\0';
+
+	/* return the new string */
+	return (d);
 }
 
 
 /**
-*_strcopy - copy string pointed by src
-*into dest variable
-*@dest:buffer storing string copy
-*@src: buffer storing string to copy
-*Return:returns copied string
-*/
-char *_strcopy(char *dest, char *src)
-{
-int index = 0;
+ * new_dog - This function creates an instance of the struct dog
+ * @name: A char pointer to an element string called name
+ * @age: A float value called age
+ * @owner: A char pointer to an element string called owner
+ * Return: A pointer to the instance new_dog, else NULL if function fails
+ */
 
-for (; src[index] ; index++)
-dest[index] = src[index];
-
-dest[index] = '\0';
-return (dest);
-}
-
-
-
-
-/**
-*new_dog - creates a new dog
-*@name: name of new dog
-*@age: age of new dog
-*@owner: owner of new dog
-*Return: returns NULL in case
-*of failure
-*/
 dog_t *new_dog(char *name, float age, char *owner)
 {
-dog_t *doggo;
+	/* creating an instance of type dog_t struct called puppo */
+	dog_t *puppo = malloc(sizeof(dog_t));
 
-if (name == NULL || age < 0 || owner == NULL)
-return (NULL);
+	/* if malloc fails, return NULL */
+	if (puppo == NULL)
+		return (NULL);
 
-doggo = malloc(sizeof(dog_t));
-if (doggo == NULL)
-return (NULL);
+	/* if name or owner arguments passed are NULL, return NULL */
+	if (!name || !owner)
+		return (NULL);
 
-doggo->name = malloc(sizeof(char) * (_strlen(name) + 1));
-if (doggo->name == NULL)
-{
-free(doggo);
-return (NULL);
-}
-
-doggo->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
-if (doggo->owner == NULL)
-{
-free(doggo->name);
-free(doggo);
-return (NULL);
-}
-
-doggo->name = _strcopy(doggo->name, name);
-doggo->age = age;
-doggo->owner = _strcopy(doggo->owner, owner);
-
-return (doggo);
+	/* if the pointer exists, run the following */
+	if (puppo)
+	{
+		/* initialize values of new struct */
+		puppo->name = _strdup(name);
+		/* if puppo->name doesn't exist */
+		if (!puppo->name)
+		{
+			/* free pointer puppo and return null */
+			free(puppo);
+			return (NULL);
+		}
+		puppo->age = age;
+		puppo->owner = _strdup(owner);
+		/* if puppo->owner doesn't exist */
+		if (!puppo->owner)
+		{
+			/* free previous pointers */
+			free(puppo->name);
+			free(puppo);
+			return (NULL);
+		}
+	}
+	/* return pointer to new struct puppo */
+	return (puppo);
 }
